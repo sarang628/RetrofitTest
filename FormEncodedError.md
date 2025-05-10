@@ -55,6 +55,36 @@ Multiporpose Internet Main Extension의 약자.
 
 Http 통신에도 MIME 타입 지원을 알 수 있음.(다양한 케릭터셋, 오디오, 비디오, 이미지 등 첨부 가능.)
 
+<b>Http 통신에도 MIME 타입 지원을 알 수 있음.(다양한 케릭터셋, 오디오, 비디오, 이미지 등 첨부 가능.)</b></br>
+<b>Http 헤더의 content-type 에서 MIME 타입을 설정한다.</b>
+```
+1. Multipart 관련 MIME 타입
+Content-Type: multipart/related – 여러 개의 연관된 데이터(예: HTML 문서와 이미지)를 하나의 메시지로 묶을 때 사용 Content-Type: application/x-fixedrecord – 고정 길이 레코드 형식 데이터를 전송할 때 사용
+
+2. XML 기반 MIME 타입
+Content-Type: text/xml – 텍스트 기반 XML 문서
+Content-Type: application/xml – 애플리케이션에서 사용되는 일반적인 XML
+Content-Type: application/xml-external-parsed-entity – 외부 파싱 XML 엔터티
+Content-Type: application/xml-dtd – DTD(문서 유형 정의) 파일
+Content-Type: application/mathml+xml – MathML 수학 표현 문서
+Content-Type: application/xslt+xml – XSLT(XML 스타일시트 변환) 문서
+
+3. 애플리케이션 관련 MIME 타입
+Content-Type: application/EDI-X12 – 전자 문서 교환 형식 (RFC 1767)
+Content-Type: application/EDIFACT – 국제 전자문서 표준 (RFC 1767)
+Content-Type: application/javascript – 자바스크립트 코드 (RFC 4329)
+Content-Type: application/octet-stream – 바이너리 데이터 (기본값, 실행파일이나 다운로드용)
+Content-Type: application/ogg – Ogg 미디어 포맷 (RFC 3534)
+Content-Type: application/x-shockwave-flash – Adobe Flash 파일
+Content-Type: application/json – JSON 포맷 데이터 (RFC 4627)
+Content-Type: application/x-www-form-urlencoded – 웹 폼 데이터 전송 방식
+
+4. 오디오 관련 MIME 타입
+Content-Type: audio/mpeg – MPEG 오디오 포맷 (예: MP3)
+Content-Type: audio/x-ms-wma – Windows Media 오디오
+Content-Type: audio/vnd.rn-realaudio – RealAudio 형식
+```
+
 ### x-www-form-urlencoded 은 무엇?
 https://en.wikipedia.org/wiki/Percent-encoding#The_application/x-www-form-urlencoded_type
 

@@ -9,32 +9,33 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.sry.retrofittest.GitHubService
+import com.sry.retrofittest.Repo
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
+
+interface FormUrlEncodedTestService {
+    @FormUrlEncoded
+    @POST("users/sarang628/repos")
+    suspend fun fetchRepo(@Field("body") body: String = ""): List<Repo>
+}
 
 @Composable
-fun FilterError(modifier: Modifier = Modifier) {
+fun FormUrlEncodedTest(modifier: Modifier = Modifier) {
     val coroutine = rememberCoroutineScope()
     val retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create()) // 필터 없으면 ResponseBody만 가능
+        .addConverterFactory(GsonConverterFactory.create())
         .baseUrl("https://api.github.com/").build()
-    val service = retrofit.create(GitHubService::class.java)
+    val service = retrofit.create(FormUrlEncodedTestService::class.java)
     var text by remember { mutableStateOf("click! retrofit test") }
 
     TextButton({
         coroutine.launch {
-            //try {
-                val result = service.responseBodyConvertTest("sarang628")
-//                val result = service.dataConvertTest("sarang628")
-//                val result = service.stringConvertTest("sarang628")
-//                text = "true. repoSize: ${result.size}"
-                text = "true. ${result}"
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//                text = "false. ${e.message} ${e.stackTrace}"
-//            }
+            val result = service.fetchRepo()
+            text = "true. repoSize: ${result.size}"
         }
     }) {
         Text(
